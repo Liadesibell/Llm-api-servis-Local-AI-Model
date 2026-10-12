@@ -1,0 +1,57 @@
+[project]
+name = "ink-ai"
+version = "0.1.0"
+description = "Bilgisayarda yerel çalışan yapay zekâ yardımcısı"
+readme = "README.md"
+authors = [
+    { name = "Liadesibell", email = "ekenfaruk59@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "customtkinter>=5.2.2",
+    "accelerate>=1.10.0",
+    "diffusers>=0.35.0,<1",
+    "ddgs>=9.0.0",
+    "fastapi>=0.115.0",
+    "huggingface-hub>=0.34.0",
+    "llama-cpp-python>=0.3.8",
+    "pypdf>=5.0.0",
+    "python-docx>=1.1.2",
+    "safetensors>=0.6.0",
+    "torch>=2.10.0,<3",
+    "transformers>=4.45.0,<5",
+    "uvicorn[standard]>=0.34.0",
+]
+
+[dependency-groups]
+dev = [
+    "httpx2",
+    "pytest>=8.0.0",
+]
+training = [
+    "bitsandbytes>=0.45.0; sys_platform == 'linux'",
+    "datasets>=3.0.0",
+    "peft>=0.14.0",
+]
+
+[project.scripts]
+ink-ai = "ink_ai.main:main"
+ink-ai-gui = "ink_ai.gui:main"
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu128" }
+llama-cpp-python = { index = "llama-cpp-vulkan" }
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[[tool.uv.index]]
+name = "llama-cpp-vulkan"
+url = "https://abetlen.github.io/llama-cpp-python/whl/vulkan"
+explicit = true
+
+[build-system]
+requires = ["uv_build>=0.12.4,<0.13.0"]
+build-backend = "uv_build"

@@ -1,0 +1,31 @@
+# Environment files
+.env*
+!.env.example
+
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+.pytest_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+.venv*/
+venv/
+
+# Downloaded model weights and local model caches
+/models/
+
+# Local editor settings
+.vscode/
+
+# Local knowledge and private fine-tuning datasets
+knowledge/incoming/*
+!knowledge/incoming/.gitkeep
+training/raw/*
+!training/raw/.gitkeep
+training/datasets/*.jsonl
